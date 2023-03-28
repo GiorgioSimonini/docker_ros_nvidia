@@ -3,6 +3,7 @@
 ## Overview
 
 Dockerfiles to build images that have ROS (1 or 2) with NVIDIA support and with GUI support (e.g. Gazebo and RViz).
+ros1_panda contains gazebo simulator for Franka-Emika robot arm, FCI and Franka-ros.
 
 The `build.bash` and the `run.bash` files are used to automatically build and run the image.
 
@@ -29,7 +30,7 @@ Run the container:
 
 The workspace directory should be the folder containing `run.bash` and `build.bash`. It is mounted in the Docker container on startup.
 
-Build the workspace inside the Docker container with colcon or catkin to avoid permission problems. The workspace's `setup.bash` is automatically sourced when the container is opened; thus it will fail the first time the container is run.
+First time on run.bash execution there is no ros workspace. Build it inside the Docker container with colcon or catkin(catkin build) to avoid permission problems. The workspace's `setup.bash` is automatically sourced when the container is opened; thus it will fail the first time the container is run.
 
 Take a look at https://docs.docker.com/develop/develop-images/dockerfile_best-practices/ before modifying the Dockerfile according to your needs.
 

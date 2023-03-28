@@ -1,0 +1,5 @@
+ros1_panda/.catkin_tools/
+ros1_panda/build/
+ros1_panda/devel/
+ros1_panda/logs/
+ros1_panda/src/
