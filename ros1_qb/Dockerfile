@@ -13,7 +13,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 # Prevent bash to ask for user input which may break the building process
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install sudo, some packages for Pinocchio, pip, and some ROS packages
+# Install sudo, some packages for pip, and some ROS packages
 RUN apt-get update && apt-get install -qqy \
 	wget \
 	git \
@@ -27,14 +27,9 @@ RUN apt-get update && apt-get install -qqy \
 #	ros-${ROS_DISTRO}-libfranka \
 #	ros-${ROS_DISTRO}-franka-ros \
 #	&& rm -rf /var/lib/apt/lists/*
-	
-RUN apt-get update && apt-get install -qqy \
-	ros-${ROS_DISTRO}-gazebo-ros \
-	ros-${ROS_DISTRO}-libfranka
-#	&& rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -qqy \
-	ros-${ROS_DISTRO}-franka-ros \
+	ros-${ROS_DISTRO}-qb-move \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Create the same user as the host itself. (By default Docker creates the container as root, which is not recommended.)

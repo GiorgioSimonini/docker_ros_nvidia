@@ -34,7 +34,11 @@ RUN apt-get update && apt-get install -qqy \
 #	&& rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -qqy \
-	ros-${ROS_DISTRO}-franka-ros \
+	ros-${ROS_DISTRO}-franka-ros
+#	&& rm -rf /var/lib/apt/lists/*
+	
+RUN apt-get update && apt-get install -qqy \
+	ros-${ROS_DISTRO}-qb-move \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Create the same user as the host itself. (By default Docker creates the container as root, which is not recommended.)
