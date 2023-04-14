@@ -28,7 +28,21 @@ RUN apt-get update && apt-get install -qqy \
 #	ros-${ROS_DISTRO}-franka-ros \
 #	&& rm -rf /var/lib/apt/lists/*
 
+# install ros control and plugins
 RUN apt-get update && apt-get install -qqy \
+	ros-${ROS_DISTRO}-rqt \
+	ros-${ROS_DISTRO}-rqt-common-plugins \
+	ros-${ROS_DISTRO}-combined-robot-hw \
+	ros-${ROS_DISTRO}-controller-interface \
+	ros-${ROS_DISTRO}-controller-manager \
+	ros-${ROS_DISTRO}-ros-control \
+	ros-${ROS_DISTRO}-ros-controllers
+	# && rm -rf /var/lib/apt/lists/*
+
+# install pkgs for elastic wrist
+RUN apt-get update && apt-get install -qqy \
+	ros-${ROS_DISTRO}-joint-trajectory-controller \
+	ros-${ROS_DISTRO}-rqt-joint-trajectory-controller \
 	ros-${ROS_DISTRO}-qb-move \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -42,6 +56,7 @@ RUN adduser --gecos "ROS User" --disabled-password --uid ${UID} --gid ${GID} ${U
 RUN usermod -a -G dialout ${USER}
 RUN echo ${USER}" ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/99_aptget
 RUN chmod 0440 /etc/sudoers.d/99_aptget && chown root:root /etc/sudoers.d/99_aptget
+
 
 # Choose to run as user
 ENV USER ${USER}
@@ -64,6 +79,13 @@ RUN echo "cd "${PWDR} >> /ros_entrypoint.sh
 RUN echo 'exec bash -i -c $@' >> /ros_entrypoint.sh
 
 RUN cat /ros_entrypoint.sh
+
+# # wrist configuration
+# RUN sudo apt-get update \
+# 	&& rosdep update \
+# 	&& rosdep install --from-paths ${PWDR}/src --ignore-src -r -y \
+# 	&& rm -rf /var/lib/apt/lists/*
+# RUN sudo gpasswd -a ${user} dialout
 
 # Clean image
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
