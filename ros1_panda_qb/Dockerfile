@@ -38,7 +38,11 @@ RUN apt-get update && apt-get install -qqy \
 #	&& rm -rf /var/lib/apt/lists/*
 	
 RUN apt-get update && apt-get install -qqy \
-	ros-${ROS_DISTRO}-qb-move \
+	ros-${ROS_DISTRO}-qb-move
+	# && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -qqy \
+	ros-${ROS_DISTRO}-tf2-geometry-msgs
 	&& rm -rf /var/lib/apt/lists/*
 
 # Create the same user as the host itself. (By default Docker creates the container as root, which is not recommended.)
