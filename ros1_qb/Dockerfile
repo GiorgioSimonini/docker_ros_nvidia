@@ -30,9 +30,9 @@ RUN apt-get update && apt-get install -qqy \
 
 # install ros control and plugins
 RUN apt-get update && apt-get install -qqy \
+	ros-${ROS_DISTRO}-gazebo-ros \
 	ros-${ROS_DISTRO}-rqt \
 	ros-${ROS_DISTRO}-rqt-common-plugins \
-	ros-${ROS_DISTRO}-combined-robot-hw \
 	ros-${ROS_DISTRO}-controller-interface \
 	ros-${ROS_DISTRO}-controller-manager \
 	ros-${ROS_DISTRO}-ros-control \
@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -qqy \
 
 # install pkgs for elastic wrist
 RUN apt-get update && apt-get install -qqy \
+	ros-${ROS_DISTRO}-combined-robot-hw \
 	ros-${ROS_DISTRO}-joint-trajectory-controller \
 	ros-${ROS_DISTRO}-rqt-joint-trajectory-controller \
 	ros-${ROS_DISTRO}-qb-move \

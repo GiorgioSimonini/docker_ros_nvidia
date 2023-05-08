@@ -30,19 +30,28 @@ RUN apt-get update && apt-get install -qqy \
 	
 RUN apt-get update && apt-get install -qqy \
 	ros-${ROS_DISTRO}-gazebo-ros \
-	ros-${ROS_DISTRO}-libfranka
+	ros-${ROS_DISTRO}-rqt \
+	ros-${ROS_DISTRO}-rqt-common-plugins \
+	ros-${ROS_DISTRO}-controller-interface \
+	ros-${ROS_DISTRO}-controller-manager \
+	ros-${ROS_DISTRO}-ros-control \
+	ros-${ROS_DISTRO}-ros-controllers
 #	&& rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -qqy \
+	ros-${ROS_DISTRO}-libfranka \
 	ros-${ROS_DISTRO}-franka-ros
 #	&& rm -rf /var/lib/apt/lists/*
 	
 RUN apt-get update && apt-get install -qqy \
-	ros-${ROS_DISTRO}-qb-move
+	ros-${ROS_DISTRO}-qb-move \
+	ros-${ROS_DISTRO}-rviz-visual-tools \
+	ros-${ROS_DISTRO}-moveit \
+	ros-${ROS_DISTRO}-moveit-visual-tools
 	# && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -qqy \
-	ros-${ROS_DISTRO}-tf2-geometry-msgs
+	ros-${ROS_DISTRO}-tf2-geometry-msgs \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Create the same user as the host itself. (By default Docker creates the container as root, which is not recommended.)
